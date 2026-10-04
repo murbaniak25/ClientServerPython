@@ -19,3 +19,16 @@ Create very basic client-server architecture using socket library.
 client_socket <--- TCP/IP ---> connection_socket
 server_socket is used only for accepting new connections
 
+# Second Stage
+
+## Description
+
+Add bidirectional TCP client-server communication.
+
+### Server
+
+- sends response with socket info to client 
+
+### Client
+
+- receives response from server and displays both client socket info and server socket info used for communication

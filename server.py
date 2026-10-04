@@ -13,7 +13,13 @@ connection_socket, client_address = server_socket.accept()
 data_bytes = connection_socket.recv(1024)
 data = data_bytes.decode("utf-8")
 
-print(data)
+print(f"Received from client: {data}")
+
+server_socket_endpoint = connection_socket.getsockname()
+
+response = f"Hello Client, my socket: {server_socket_endpoint}"
+
+connection_socket.send(response.encode())
 
 server_socket.close()
 connection_socket.close()
