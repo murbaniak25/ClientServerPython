@@ -4,13 +4,20 @@ client_socket = socket.socket(family=socket.AF_INET, type=socket.SOCK_STREAM)
 
 client_socket.connect(("127.0.0.1", 5000))
 
-client_socket_endpoint = client_socket.getsockname()
+while True:
 
-client_socket.sendall(b"Hello server :)")
+    message = input("> ")
+    client_socket.sendall(message.encode())
 
-response_bytes = client_socket.recv(1024)
-response = response_bytes.decode()
+    if message == 'exit':
+        break
 
-print(f"Client socket endpoint: {client_socket_endpoint}\nServer response: {response}")
+    elif not message:
+        continue
+
+    response_bytes = client_socket.recv(1024)
+    response = response_bytes.decode("utf-8")
+
+    print(f"Server response: {response}")
 
 client_socket.close()

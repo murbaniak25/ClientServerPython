@@ -32,3 +32,9 @@ Add bidirectional TCP client-server communication.
 ### Client
 
 - receives response from server and displays both client socket info and server socket info used for communication
+
+# Third Stage
+
+## Description
+
+Add while loop to client and server for continuous communication.

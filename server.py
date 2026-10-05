@@ -10,16 +10,23 @@ print("Waiting for a connection...")
 
 connection_socket, client_address = server_socket.accept()
 
-data_bytes = connection_socket.recv(1024)
-data = data_bytes.decode("utf-8")
+while True:
 
-print(f"Received from client: {data}")
+    data_bytes = connection_socket.recv(1024)
 
-server_socket_endpoint = connection_socket.getsockname()
+    if not data_bytes:
+        break
 
-response = f"Hello Client, my socket: {server_socket_endpoint}"
+    message = data_bytes.decode("utf-8")
 
-connection_socket.send(response.encode())
+    if message == "exit":
+        break
+
+    print(f"Received from client: {message}")
+
+    response = f"Received: {message}"
+
+    connection_socket.send(response.encode())
 
 server_socket.close()
 connection_socket.close()
